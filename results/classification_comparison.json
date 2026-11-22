@@ -1,0 +1,19 @@
+{
+  "variable_modifiee": "consigne (zero-shot vs few-shot avec 7 exemples)",
+  "variante_1": {
+    "nom": "Zero-shot",
+    "bons_exemples": 15,
+    "accuracy": 0.6,
+    "macro_f1": 0.5619
+  },
+  "variante_2": {
+    "nom": "Few-shot",
+    "bons_exemples": 22,
+    "accuracy": 0.88,
+    "macro_f1": 0.8667
+  },
+  "ecart_en_exemples": 7,
+  "ecart_macro_f1": 0.3048,
+  "total_exemples": 25,
+  "conclusion": "L'ajout d'exemples dans la consigne donne un écart de 7 exemple(s) (+0.305 de Macro-F1). La variante few-shot est supérieure."
+}

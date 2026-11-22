@@ -1,0 +1,25 @@
+{
+  "modele_embedding": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+  "dimension": 384,
+  "nb_passages": 16,
+  "nb_questions_test": 15,
+  "duree_secondes": 0.18,
+  "recall@1": 0.8,
+  "recall@3": 0.9333,
+  "recall@5": 1.0,
+  "mrr": 0.8833,
+  "questions_echecs_top3": [
+    {
+      "id": "Q03",
+      "question": "De combien de jours dispose-t-on pour renvoyer un produit ?",
+      "attendu": [
+        "P13"
+      ],
+      "trouves_top3": [
+        "P16",
+        "P12",
+        "P09"
+      ]
+    }
+  ]
+}

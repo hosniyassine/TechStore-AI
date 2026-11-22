@@ -1,0 +1,189 @@
+[
+  {
+    "id": "P001",
+    "name": "Galaxy S24 Ultra",
+    "brand": "Samsung",
+    "category": "Smartphones",
+    "price": 1349.0,
+    "description": "Smartphone haut de gamme avec écran Dynamic AMOLED 2X 6.8 pouces, processeur Snapdragon 8 Gen 3 et stylet S-Pen inclus.",
+    "ram": "12 Go",
+    "storage": "256 Go",
+    "stock": 10
+  },
+  {
+    "id": "P002",
+    "name": "iPhone 15 Pro",
+    "brand": "Apple",
+    "category": "Smartphones",
+    "price": 1229.0,
+    "description": "Smartphone avec châssis en titane, puce A17 Pro, écran Super Retina XDR 6.1 pouces et bouton Action.",
+    "ram": "8 Go",
+    "storage": "128 Go",
+    "stock": 8
+  },
+  {
+    "id": "P003",
+    "name": "Pixel 8 Pro",
+    "brand": "Google",
+    "category": "Smartphones",
+    "price": 999.0,
+    "description": "Smartphone axé sur la photographie avancée avec puce Google Tensor G3, écran OLED 120 Hz et fonctions IA exclusives.",
+    "ram": "12 Go",
+    "storage": "128 Go",
+    "stock": 5
+  },
+  {
+    "id": "P004",
+    "name": "Redmi Note 13 Pro",
+    "brand": "Xiaomi",
+    "category": "Smartphones",
+    "price": 299.0,
+    "description": "Smartphone milieu de gamme avec capteur photo 200 MP, écran AMOLED 120 Hz et charge rapide 67W.",
+    "ram": "8 Go",
+    "storage": "256 Go",
+    "stock": 25
+  },
+  {
+    "id": "P005",
+    "name": "MacBook Air M3",
+    "brand": "Apple",
+    "category": "Ordinateurs portables",
+    "price": 1299.0,
+    "description": "Ultraportable 13.6 pouces avec puce M3 (8 cœurs CPU / 8 cœurs GPU), design ultra-fin et jusqu'à 18 heures d'autonomie.",
+    "ram": "8 Go",
+    "storage": "256 Go",
+    "stock": 10
+  },
+  {
+    "id": "P006",
+    "name": "MacBook Pro 14 M3 Pro",
+    "brand": "Apple",
+    "category": "Ordinateurs portables",
+    "price": 2499.0,
+    "description": "Ordinateur portable pour créatifs et développeurs, écran Liquid Retina XDR 120 Hz, performances extrêmes.",
+    "ram": "18 Go",
+    "storage": "512 Go",
+    "stock": 4
+  },
+  {
+    "id": "P007",
+    "name": "Dell XPS 15 9530",
+    "brand": "Dell",
+    "category": "Ordinateurs portables",
+    "price": 1899.0,
+    "description": "PC portable professionnel 15.6 pouces OLED 3.5K, processeur Intel Core i7-13700H et carte graphique RTX 4050.",
+    "ram": "16 Go",
+    "storage": "512 Go",
+    "stock": 6
+  },
+  {
+    "id": "P008",
+    "name": "Lenovo Yoga Slim 7",
+    "brand": "Lenovo",
+    "category": "Ordinateurs portables",
+    "price": 949.0,
+    "description": "PC portable polyvalent compact, processeur AMD Ryzen 7 7840S, écran IPS 14.5 pouces 90 Hz ultra lumineux.",
+    "ram": "16 Go",
+    "storage": "1 To",
+    "stock": 0
+  },
+  {
+    "id": "P009",
+    "name": "iPad Pro 11 M4",
+    "brand": "Apple",
+    "category": "Tablettes",
+    "price": 1199.0,
+    "description": "Tablette professionnelle avec écran Ultra Retina Tandem OLED, puce M4 et compatibilité Apple Pencil Pro.",
+    "ram": "8 Go",
+    "storage": "256 Go",
+    "stock": 7
+  },
+  {
+    "id": "P010",
+    "name": "Galaxy Tab S9",
+    "brand": "Samsung",
+    "category": "Tablettes",
+    "price": 799.0,
+    "description": "Tablette étanche IP68 avec écran Dynamic AMOLED 2X 11 pouces, Snapdragon 8 Gen 2 et S-Pen inclus.",
+    "ram": "8 Go",
+    "storage": "128 Go",
+    "stock": 9
+  },
+  {
+    "id": "P011",
+    "name": "Xiaomi Pad 6",
+    "brand": "Xiaomi",
+    "category": "Tablettes",
+    "price": 369.0,
+    "description": "Tablette multimédia 11 pouces 144 Hz, processeur Snapdragon 870, 4 haut-parleurs stéréo Dolby Atmos.",
+    "ram": "6 Go",
+    "storage": "128 Go",
+    "stock": 12
+  },
+  {
+    "id": "P012",
+    "name": "Sony WH-1000XM5",
+    "brand": "Sony",
+    "category": "Casques et écouteurs",
+    "price": 379.0,
+    "description": "Casque sans fil arceau circum-aural avec réduction active de bruit leader du marché, 30 heures d'autonomie et codec LDAC.",
+    "ram": "N/A",
+    "storage": "N/A",
+    "stock": 18
+  },
+  {
+    "id": "P013",
+    "name": "AirPods Pro 2 USB-C",
+    "brand": "Apple",
+    "category": "Casques et écouteurs",
+    "price": 279.0,
+    "description": "Écouteurs intra-auriculaires sans fil avec réduction active du bruit 2x plus efficace, boîtier de charge MagSafe USB-C.",
+    "ram": "N/A",
+    "storage": "N/A",
+    "stock": 20
+  },
+  {
+    "id": "P014",
+    "name": "Bose QuietComfort Ultra",
+    "brand": "Bose",
+    "category": "Casques et écouteurs",
+    "price": 449.0,
+    "description": "Casque audio spatialisé immersif avec annulation de bruit de niveau mondial et confort exceptionnel.",
+    "ram": "N/A",
+    "storage": "N/A",
+    "stock": 0
+  },
+  {
+    "id": "P015",
+    "name": "Chargeur Anker Prime 67W GaN",
+    "brand": "Anker",
+    "category": "Accessoires électroniques",
+    "price": 59.99,
+    "description": "Chargeur rapide mural compact à 3 ports (2x USB-C, 1x USB-A) technologie GaNPrime pour smartphone et PC.",
+    "ram": "N/A",
+    "storage": "N/A",
+    "stock": 45
+  },
+  {
+    "id": "P016",
+    "name": "Souris Logitech MX Master 3S",
+    "brand": "Logitech",
+    "category": "Accessoires électroniques",
+    "price": 109.0,
+    "description": "Souris bureautique sans fil ergonomique haute précision 8000 DPI, clics silencieux et molette MagSpeed.",
+    "ram": "N/A",
+    "storage": "N/A",
+    "stock": 16
+  },
+  {
+    "id": "P017",
+    "name": "Câble USB-C Tressé 240W 2m",
+    "brand": "Anker",
+    "category": "Accessoires électroniques",
+    "price": 19.99,
+    "description": "Câble de recharge rapide Power Delivery 3.1 ultra-résistant supportant jusqu'à 240W.",
+    "ram": "N/A",
+    "storage": "N/A",
+    "stock": 50
+  }
+]

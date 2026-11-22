@@ -1,0 +1,27 @@
+{
+  "variable_modifiee": "qualité des descriptions JSON Schema des outils (précises vs vagues)",
+  "variante_precis": {
+    "taches_reussies": 19,
+    "bons_outils": 19,
+    "diagnostic": {
+      "ok": 19,
+      "redaction": 0,
+      "detour": 1,
+      "outils": 0
+    }
+  },
+  "variante_vagues": {
+    "taches_reussies": 17,
+    "bons_outils": 17,
+    "diagnostic": {
+      "ok": 17,
+      "redaction": 0,
+      "detour": 3,
+      "outils": 0
+    }
+  },
+  "ecart_taches_reussies": 2,
+  "ecart_bons_outils": 2,
+  "total_taches": 20,
+  "conclusion": "Des descriptions précises permettent de réussir 2 tâche(s) de plus et d'appeler les bons outils sur 2 tâche(s) supplémentaire(s)."
+}

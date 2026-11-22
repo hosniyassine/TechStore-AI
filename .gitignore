@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.env
+data/audio/test/*.wav
+data/images/test/*.tmp
+*.Zone.Identifier
+*:Zone.Identifier

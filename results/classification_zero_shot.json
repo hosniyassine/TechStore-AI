@@ -1,0 +1,148 @@
+{
+  "etiquette": "classification_zero_shot",
+  "total_exemples": 25,
+  "bons_exemples": 15,
+  "accuracy": 0.6,
+  "macro_f1": 0.5619,
+  "taux_invalides": 0.0,
+  "scores_par_classe": {
+    "recherche": {
+      "precision": 1.0,
+      "recall": 0.3333,
+      "f1": 0.5,
+      "support": 3,
+      "vp": 1,
+      "fp": 0,
+      "fn": 2
+    },
+    "prix": {
+      "precision": 0.6667,
+      "recall": 0.6667,
+      "f1": 0.6667,
+      "support": 3,
+      "vp": 2,
+      "fp": 1,
+      "fn": 1
+    },
+    "comparaison": {
+      "precision": 0.5,
+      "recall": 0.3333,
+      "f1": 0.4,
+      "support": 3,
+      "vp": 1,
+      "fp": 1,
+      "fn": 2
+    },
+    "stock": {
+      "precision": 1.0,
+      "recall": 0.3333,
+      "f1": 0.5,
+      "support": 3,
+      "vp": 1,
+      "fp": 0,
+      "fn": 2
+    },
+    "garantie": {
+      "precision": 1.0,
+      "recall": 0.6667,
+      "f1": 0.8,
+      "support": 3,
+      "vp": 2,
+      "fp": 0,
+      "fn": 1
+    },
+    "commande": {
+      "precision": 0.5,
+      "recall": 0.3333,
+      "f1": 0.4,
+      "support": 3,
+      "vp": 1,
+      "fp": 1,
+      "fn": 2
+    },
+    "autre": {
+      "precision": 0.5,
+      "recall": 1.0,
+      "f1": 0.6667,
+      "support": 7,
+      "vp": 7,
+      "fp": 7,
+      "fn": 0
+    }
+  },
+  "matrice_confusion": {
+    "recherche": {
+      "recherche": 1,
+      "prix": 0,
+      "comparaison": 0,
+      "stock": 0,
+      "garantie": 0,
+      "commande": 0,
+      "autre": 2,
+      "invalide": 0
+    },
+    "prix": {
+      "recherche": 0,
+      "prix": 2,
+      "comparaison": 1,
+      "stock": 0,
+      "garantie": 0,
+      "commande": 0,
+      "autre": 0,
+      "invalide": 0
+    },
+    "comparaison": {
+      "recherche": 0,
+      "prix": 0,
+      "comparaison": 1,
+      "stock": 0,
+      "garantie": 0,
+      "commande": 1,
+      "autre": 1,
+      "invalide": 0
+    },
+    "stock": {
+      "recherche": 0,
+      "prix": 1,
+      "comparaison": 0,
+      "stock": 1,
+      "garantie": 0,
+      "commande": 0,
+      "autre": 1,
+      "invalide": 0
+    },
+    "garantie": {
+      "recherche": 0,
+      "prix": 0,
+      "comparaison": 0,
+      "stock": 0,
+      "garantie": 2,
+      "commande": 0,
+      "autre": 1,
+      "invalide": 0
+    },
+    "commande": {
+      "recherche": 0,
+      "prix": 0,
+      "comparaison": 0,
+      "stock": 0,
+      "garantie": 0,
+      "commande": 1,
+      "autre": 2,
+      "invalide": 0
+    },
+    "autre": {
+      "recherche": 0,
+      "prix": 0,
+      "comparaison": 0,
+      "stock": 0,
+      "garantie": 0,
+      "commande": 0,
+      "autre": 7,
+      "invalide": 0
+    }
+  },
+  "latence_min_ms": 0.0,
+  "latence_mediane_ms": 0.01,
+  "latence_max_ms": 0.06
+}

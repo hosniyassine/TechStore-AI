@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechStore AI — Assistant Intelligent & Gestion</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="navbar">
+        <div class="nav-brand">
+            <span class="logo-icon">⚡</span>
+            <div class="logo-text">
+                <span class="logo-title">TechStore AI</span>
+                <span class="logo-subtitle">Système Intelligent & Gestion Commerciale</span>
+            </div>
+        </div>
+        <nav class="nav-links">
+            <button class="nav-btn active" data-tab="dashboard">📊 Dashboard</button>
+            <button class="nav-btn" data-tab="products">📱 Produits</button>
+            <button class="nav-btn" data-tab="orders">📦 Commandes</button>
+            <button class="nav-btn" data-tab="assistant">🤖 Assistant IA</button>
+        </nav>
+        <div class="system-status">
+            <span class="badge" id="badge-mode">Mode: MOCK</span>
+            <span class="badge badge-outline" id="badge-provider">Fournisseur: mock</span>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- ========================================== -->
+        <!-- 1. DASHBOARD                               -->
+        <!-- ========================================== -->
+        <section id="tab-dashboard" class="tab-content active">
+            <div class="section-header">
+                <h2>Tableau de bord et Métriques pédagogiques</h2>
+                <p class="section-desc">Synthèse des mesures réelles issues des Ateliers 1 à 5 et du Guide Projet.</p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">📦</div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="stat-products">17</span>
+                        <span class="stat-label">Produits au catalogue</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🛒</div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="stat-orders">3</span>
+                        <span class="stat-label">Commandes enregistrées</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🎯</div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="stat-accuracy">88.0%</span>
+                        <span class="stat-label">Précision Classifieur (Few-shot)</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🔍</div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="stat-rag">0.883</span>
+                        <span class="stat-label">MRR Recherche (FastEmbed)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mesures TP2, TP4, TP5 -->
+            <div class="cards-grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>TP2 : Classification & Comparaison (1 variable)</h3>
+                        <span class="tag tag-blue">Dataset 25 exemples</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="summary-text" id="classification-summary">Chargement des métriques...</p>
+                        <div class="metrics-row">
+                            <div class="metric-box">
+                                <span class="metric-title">Zero-shot (Base)</span>
+                                <span class="metric-num text-orange" id="metric-class-zero">15/25 (60.0%)</span>
+                                <span class="metric-sub">Macro-F1: 0.562</span>
+                            </div>
+                            <div class="metric-box">
+                                <span class="metric-title">Few-shot (+Exemples)</span>
+                                <span class="metric-num text-green" id="metric-class-few">22/25 (88.0%)</span>
+                                <span class="metric-sub">Macro-F1: 0.867</span>
+                            </div>
+                            <div class="metric-box">
+                                <span class="metric-title">Écart mesuré</span>
+                                <span class="metric-num text-primary">+7 exemples</span>
+                                <span class="metric-sub">+0.305 Macro-F1</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>TP4 : RAG & Évaluation Documentaire</h3>
+                        <span class="tag tag-purple">4 PDFs · FastEmbed MiniLM</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="summary-text">Recherche sur 16 passages et 20 questions annotées.</p>
+                        <div class="metrics-row">
+                            <div class="metric-box">
+                                <span class="metric-title">Recall@1 / Recall@3</span>
+                                <span class="metric-num text-blue" id="metric-rag-recalls">0.800 / 0.933</span>
+                                <span class="metric-sub">Recall@5: 1.000</span>
+                            </div>
+                            <div class="metric-box">
+                                <span class="metric-title">Refus hors-base</span>
+                                <span class="metric-num text-green" id="metric-rag-refus">5/5 (100%)</span>
+                                <span class="metric-sub">Refus à tort : 0%</span>
+                            </div>
+                            <div class="metric-box">
+                                <span class="metric-title">Diagnostic 2x2</span>
+                                <span class="metric-num text-primary">OK: 12 · Rech: 1</span>
+                                <span class="metric-sub">Gén: 2 · Chance: 0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Agent TP5 & Sécurité -->
+            <div class="card" style="margin-top: 1.5rem;">
+                <div class="card-header">
+                    <h3>TP5 : Agent Autonome avec Outils & Sécurité Commande</h3>
+                    <span class="tag tag-green">4 Outils JSON Schema · max_tours=5</span>
+                </div>
+                <div class="card-body">
+                    <div class="metrics-row">
+                        <div class="metric-box">
+                            <span class="metric-title">Schémas Précis</span>
+                            <span class="metric-num text-green">16/20 (80.0%)</span>
+                            <span class="metric-sub">Bons outils: 19/20 (95%)</span>
+                        </div>
+                        <div class="metric-box">
+                            <span class="metric-title">Schémas Vagues</span>
+                            <span class="metric-num text-orange">14/20 (70.0%)</span>
+                            <span class="metric-sub">Bons outils: 17/20 (85%)</span>
+                        </div>
+                        <div class="metric-box">
+                            <span class="metric-title">Écart 1 variable</span>
+                            <span class="metric-num text-primary">+2 tâches</span>
+                            <span class="metric-sub">+10% de décision</span>
+                        </div>
+                        <div class="metric-box">
+                            <span class="metric-title">Actions non autorisées</span>
+                            <span class="metric-num text-green">0</span>
+                            <span class="metric-sub">Sécurité stricte respectée</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- 2. GESTION DES PRODUITS (CRUD)             -->
+        <!-- ========================================== -->
+        <section id="tab-products" class="tab-content">
+            <div class="section-header-flex">
+                <div>
+                    <h2>Gestion des Produits</h2>
+                    <p class="section-desc">Consulter, rechercher, filtrer, ajouter, modifier et supprimer des produits.</p>
+                </div>
+                <button class="btn btn-primary" id="btn-open-add-product">+ Nouveau Produit</button>
+            </div>
+
+            <div class="filters-bar">
+                <input type="text" id="filter-search" class="input-field" placeholder="Rechercher par nom, marque ou mot-clé...">
+                <select id="filter-category" class="input-field select-field">
+                    <option value="">Toutes les catégories</option>
+                    <option value="Smartphones">Smartphones</option>
+                    <option value="Ordinateurs portables">Ordinateurs portables</option>
+                    <option value="Tablettes">Tablettes</option>
+                    <option value="Casques et écouteurs">Casques et écouteurs</option>
+                    <option value="Accessoires électroniques">Accessoires électroniques</option>
+                </select>
+                <input type="number" id="filter-max-price" class="input-field input-narrow" placeholder="Prix max (€)">
+                <button class="btn btn-secondary" id="btn-reset-filters">Réinitialiser</button>
+            </div>
+
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Produit</th>
+                            <th>Marque</th>
+                            <th>Catégorie</th>
+                            <th>Prix</th>
+                            <th>RAM / Stockage</th>
+                            <th>Stock</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="products-table-body">
+                        <!-- Rempli dynamiquement -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- 3. GESTION DES COMMANDES                   -->
+        <!-- ========================================== -->
+        <section id="tab-orders" class="tab-content">
+            <div class="section-header-flex">
+                <div>
+                    <h2>Gestion des Commandes</h2>
+                    <p class="section-desc">Suivi des commandes, validation et mise à jour automatique du stock.</p>
+                </div>
+                <button class="btn btn-primary" id="btn-open-create-order">+ Nouvelle Commande</button>
+            </div>
+
+            <div class="alert alert-info">
+                <strong>Règle de sécurité stricte :</strong> Aucune commande ne peut être créée sans confirmation explicite préalable du client. Le stock est débité dès confirmation.
+            </div>
+
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>N° Commande</th>
+                            <th>Produit</th>
+                            <th>Quantité</th>
+                            <th>Montant Total</th>
+                            <th>Statut</th>
+                            <th>Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="orders-table-body">
+                        <!-- Rempli dynamiquement -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- 4. ASSISTANT IA MULTIMODAL                 -->
+        <!-- ========================================== -->
+        <section id="tab-assistant" class="tab-content">
+            <div class="assistant-layout">
+                <!-- Zone de discussion -->
+                <div class="chat-container">
+                    <div class="chat-header">
+                        <div class="chat-header-info">
+                            <span class="bot-avatar">🤖</span>
+                            <div>
+                                <h3>Assistant TechStore AI</h3>
+                                <span class="chat-sub" id="assistant-mode-label">Mode : Agent avec Tools (TP5) & RAG (TP4)</span>
+                            </div>
+                        </div>
+                        <div class="chat-controls">
+                            <select id="select-ai-mode" class="input-field input-sm">
+                                <option value="agent">Agent avec Outils (TP5)</option>
+                                <option value="rag">RAG Documentaire (TP4)</option>
+                                <option value="classify">Classification Seule (TP2)</option>
+                            </select>
+                            <button class="btn btn-sm btn-secondary" id="btn-clear-chat">Effacer</button>
+                        </div>
+                    </div>
+
+                    <div class="chat-messages" id="chat-messages">
+                        <div class="message message-bot">
+                            <div class="message-bubble">
+                                Bonjour ! Je suis votre assistant TechStore AI. Je peux rechercher des produits dans notre catalogue, comparer des modèles, vérifier la disponibilité en stock, répondre à vos questions sur les garanties ou préparer votre commande. Que souhaitez-vous savoir ?
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Barre d'entrée avec multimédia -->
+                    <div class="chat-input-bar">
+                        <div class="multimedia-buttons">
+                            <!-- Import MP3 -->
+                            <label class="btn-icon" title="Importer un message vocal MP3 (TP3)">
+                                🎙️
+                                <input type="file" id="audio-file-input" accept=".mp3" style="display:none">
+                            </label>
+                            <!-- Import Image -->
+                            <label class="btn-icon" title="Importer une image de produit (TP3)">
+                                📷
+                                <input type="file" id="image-file-input" accept=".png,.jpg,.jpeg,.webp" style="display:none">
+                            </label>
+                        </div>
+                        <textarea id="chat-textarea" placeholder="Posez une question, cherchez un produit, demandez un prix ou un stock..." rows="1"></textarea>
+                        <button class="btn btn-primary" id="btn-send-message">Envoyer</button>
+                    </div>
+                </div>
+
+                <!-- Panneau latéral : Détails d'exécution & Sources RAG -->
+                <div class="assistant-sidebar">
+                    <div class="sidebar-box">
+                        <h4>🔍 Sources documentaires RAG</h4>
+                        <div id="rag-sources-container" class="sources-list">
+                            <p class="text-muted">Les sources citées ([P01], [P09], etc.) apparaîtront ici.</p>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-box">
+                        <h4>🛠️ Outils exécutés (Agent TP5)</h4>
+                        <div id="tools-calls-container" class="tools-list">
+                            <p class="text-muted">Aucun outil exécuté pour le moment.</p>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-box">
+                        <h4>🎙️ Multimédia & Audio (TP3)</h4>
+                        <div id="multimedia-result-box" class="multimedia-info">
+                            <p class="text-muted">Importez un fichier MP3 ou une image pour voir le traitement.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal : Ajouter / Modifier un produit -->
+    <div id="modal-product" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-product-title">Ajouter un produit</h3>
+                <button class="modal-close" id="btn-close-product-modal">&times;</button>
+            </div>
+            <form id="form-product">
+                <input type="hidden" id="prod-form-id">
+                <div class="form-group">
+                    <label>Nom du produit :</label>
+                    <input type="text" id="prod-form-name" class="input-field" required placeholder="ex: Galaxy S24 Ultra">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Marque :</label>
+                        <input type="text" id="prod-form-brand" class="input-field" required placeholder="ex: Samsung">
+                    </div>
+                    <div class="form-group">
+                        <label>Catégorie :</label>
+                        <select id="prod-form-category" class="input-field" required>
+                            <option value="Smartphones">Smartphones</option>
+                            <option value="Ordinateurs portables">Ordinateurs portables</option>
+                            <option value="Tablettes">Tablettes</option>
+                            <option value="Casques et écouteurs">Casques et écouteurs</option>
+                            <option value="Accessoires électroniques">Accessoires électroniques</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Prix (€) :</label>
+                        <input type="number" id="prod-form-price" class="input-field" step="0.01" min="0.01" required placeholder="ex: 1299.00">
+                    </div>
+                    <div class="form-group">
+                        <label>Stock disponible :</label>
+                        <input type="number" id="prod-form-stock" class="input-field" min="0" required placeholder="ex: 10">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>RAM :</label>
+                        <input type="text" id="prod-form-ram" class="input-field" placeholder="ex: 12 Go (ou N/A)">
+                    </div>
+                    <div class="form-group">
+                        <label>Stockage :</label>
+                        <input type="text" id="prod-form-storage" class="input-field" placeholder="ex: 256 Go (ou N/A)">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Description détaillée :</label>
+                    <textarea id="prod-form-description" class="input-field" rows="3" required placeholder="Caractéristiques techniques, écran, processeur..."></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="btn-cancel-product">Annuler</button>
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal : Créer une commande -->
+    <div id="modal-order" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Créer une commande</h3>
+                <button class="modal-close" id="btn-close-order-modal">&times;</button>
+            </div>
+            <form id="form-order">
+                <div class="form-group">
+                    <label>Sélectionner le produit :</label>
+                    <select id="order-form-product" class="input-field" required>
+                        <!-- Rempli dynamiquement -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Quantité souhaitée :</label>
+                    <input type="number" id="order-form-qty" class="input-field" min="1" value="1" required>
+                </div>
+                <div class="form-group confirmation-check">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="order-form-confirmed">
+                        <span><strong>Confirmation formelle du client</strong> (Règle obligatoire TP5 : Aucune commande sans confirmation explicite).</span>
+                    </label>
+                </div>
+                <div id="order-feedback" class="order-feedback-box" style="display:none;"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="btn-cancel-order">Fermer</button>
+                    <button type="submit" class="btn btn-primary">Valider la commande</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>

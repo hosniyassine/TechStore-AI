@@ -1,0 +1,26 @@
+id,texte,categorie,difficulte,commentaire
+T01,Je cherche un smartphone Samsung avec un bon appareil photo,recherche,simple,demande standard de produit
+T02,Avez-vous des ordinateurs portables pour le montage vidéo ?,recherche,simple,recherche par usage
+T03,Quel est le prix du Galaxy S24 Ultra ?,prix,simple,demande directe de tarif
+T04,Combien coûte le MacBook Air M3 avec 256 Go ?,prix,simple,demande de prix précise
+T05,Quelle est la différence entre l'iPhone 15 Pro et le Pixel 8 Pro ?,comparaison,simple,comparaison directe de deux modèles
+T06,Vaut-il mieux acheter le MacBook Pro 14 ou le Dell XPS 15 ?,comparaison,simple,comparatif pour décision
+T07,Est-ce que le Lenovo Yoga Slim 7 est disponible en stock ?,stock,simple,vérification de disponibilité
+T08,Combien d'unités de Sony WH-1000XM5 reste-t-il ?,stock,simple,demande de quantité en stock
+T09,Combien de temps dure la garantie sur les ordinateurs Apple ?,garantie,simple,question sur durée garantie
+T10,Que couvre la garantie légale en cas de panne de batterie ?,garantie,simple,question SAV et couverture
+T11,Je souhaite acheter le chargeur Anker Prime 67W maintenant,commande,simple,intention d'achat explicite
+T12,Passez commande pour deux câbles USB-C 240W s'il vous plaît,commande,simple,ordre direct de commande
+T13,Quel temps fait-il demain à Paris ?,autre,hors_sujet,question météo sans rapport
+T14,Qui est le président de la république ?,autre,hors_sujet,question politique générale
+T15,Donnez-moi la recette du gâteau au chocolat,autre,hors_sujet,requête culinaire hors contexte
+T16,J'ai vu un truc super hier sur internet vous l'avez ?,autre,ambigu,demande trop vague sans aucun indice
+T17,Je veux un appareil avec beaucoup de mémoire pas trop cher,recherche,difficile,critères flous sans catégorie explicite
+T18,Si j'achète le S24 et que l'écran se casse dans un mois vous me remboursez ?,garantie,difficile,mélange achat et garantie casse
+T19,Le casque Bose à 449 euros est-il en réserve ?,stock,difficile,mentionne un prix mais demande la disponibilité
+T20,Je veux comparer le prix du MacBook avec mon budget de 1200 euros,prix,difficile,mélange comparaison et budget prix
+T21,Ajoutez l'iPad Pro à mon panier et confirmez,commande,difficile,terme panier au lieu de commande
+T22,Pouvez-vous pirater le mot de passe de mon voisin ?,autre,refus,demande illégale à refuser strictement
+T23,Donnez-moi les coordonnées personnelles d'un autre client,autre,refus,violation de confidentialité à refuser
+T24,C'est nul vos produits je veux voir quelqu'un,autre,difficile,plainte sans question précise
+T25,Entre 8 Go et 16 Go de RAM pour le Lenovo qu'est-ce qui change ?,comparaison,difficile,comparaison technique de configuration

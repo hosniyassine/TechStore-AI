@@ -1,0 +1,373 @@
+{
+  "questions_repondables": 15,
+  "questions_hors_base": 5,
+  "reponses_justes": 12,
+  "taux_reponses_justes": 0.8,
+  "refus_a_tort": 0,
+  "taux_refus_a_tort": 0.0,
+  "refus_corrects": 5,
+  "taux_refus_corrects": 1.0,
+  "latence_moyenne_ms": 0.0,
+  "diagnostic_counts": {
+    "ok": 12,
+    "generation": 2,
+    "chance": 0,
+    "recherche": 1
+  },
+  "diagnostic_indices": {
+    "ok": [
+      1,
+      3,
+      4,
+      5,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "generation": [
+      0,
+      6
+    ],
+    "chance": [],
+    "recherche": [
+      2
+    ]
+  },
+  "details": [
+    {
+      "id": "Q01",
+      "question": "Quelle est la durée de la garantie légale sur vos produits ?",
+      "repondable": true,
+      "passages_attendus": [
+        "P09"
+      ],
+      "passages_trouves": [
+        "P12",
+        "P09",
+        "P13"
+      ],
+      "passage_retrouve": true,
+      "reponse_juste": false,
+      "suffisant": true,
+      "reponse": "Selon nos documents officiels [P12] : Pour activer la garantie le client doit présenter sa facture d achat ou numéro de commande (ex: CMD-1001). Diagnostic technique réalisé sous 48 heures ouvrées en magasin ou par retour atelier. Si non réparable sous 15 jours calendaires échange à neuf ou avoir immédiat."
+    },
+    {
+      "id": "Q02",
+      "question": "Combien coûte le Galaxy S24 Ultra avec 256 Go ?",
+      "repondable": true,
+      "passages_attendus": [
+        "P01"
+      ],
+      "passages_trouves": [
+        "P01",
+        "P04",
+        "P05"
+      ],
+      "passage_retrouve": true,
+      "reponse_juste": true,
+      "suffisant": true,
+      "reponse": "Selon nos documents officiels [P01] : Marque : Samsung. Prix officiel : 1349.00 € TTC. Mémoire RAM : 12 Go. Stockage interne : 256 Go. Smartphone haut de gamme avec écran Dynamic AMOLED 2X 6.8 pouces processeur Snapdragon 8 Gen 3 et stylet S-Pen inclus. Disponibilité : 14 unités en stock."
+    },
+    {
+      "id": "Q03",
+      "question": "De combien de jours dispose-t-on pour renvoyer un produit ?",
+      "repondable": true,
+      "passages_attendus": [
+        "P13"
+      ],
+      "passages_trouves": [
+        "P16",
+        "P12",
+        "P09"
+      ],
+      "passage_retrouve": false,
+      "reponse_juste": false,
+      "suffisant": true,
+      "reponse": "Selon nos documents officiels [P16] : Le remboursement complet du produit et des frais de livraison standard initiaux est effectué dans un délai de 5 à 7 jours ouvrés après réception et vérification de conformité en entrepôt. Remboursement automatique sur le moyen de paiement d origine."
+    },
+    {
+      "id": "Q04",
+      "question": "Le retour en point relais est-il payant ?",
+      "repondable": true,
+      "passages_attendus": [
+        "P15"
+      ],
+      "passages_trouves": [
+        "P15",
+        "P16",
+        "P12"
+      ],
+      "passage_retrouve": true,
+      "reponse_juste": true,
+      "suffisant": true,
+      "reponse": "Selon nos documents officiels [P15] : Les retours sont totalement gratuits en point relais partenaire grâce au bon de retour prépayé téléchargeable dans votre espace client. En cas d envoi postal express par le client les frais restent à sa charge."
+    },
+    {
+      "id": "Q05",
+      "question": "Combien de temps faut-il pour être remboursé après un retour ?",
+      "repondable": true,
+      "passages_attendus": [
+        "P16"
+      ],
+      "passages_trouves": [
+        "P16",
+        "P12",
+        "P13"
+      ],
+      "passage_retrouve": true,
+      "reponse_juste": true,
+      "suffisant": true,
+      "reponse": "Selon nos documents officiels [P16] : Le remboursement complet du produit et des frais de livraison standard initiaux est effectué dans un délai de 5 à 7 jours ouvrés après réception et vérification de conformité en entrepôt. Remboursement automatique sur le moyen de paiement d origine."
+    },
+    {
+      "id": "Q06",
+      "question": "Quelle est la mémoire vive RAM du Dell XPS 15 ?",
+      "repondable": true,
+      "passages_attendus": [
+        "P07"
+      ],
+      "passages_trouves": [
+        "P07",
+        "P01",
+        "P08"
+      ],
+      "passage_retrouve": true,
+      "reponse_juste": true,
+      "suffisant": true,
+      "reponse": "Selon nos documents officiels [P07] : Marque : Dell. Prix officiel : 1899.00 € TTC. Mémoire RAM : 16 Go. Stockage SSD : 512 Go. PC portable professionnel 15.6 pouces OLED 3.5K processeur Intel Core i7-13700H et carte graphique RTX 4050. Disponibilité : 6 unités en stock."
+    },
+    {
+      "id": "Q07",
+      "question": "La casse de l'écran après une chute est-elle couverte par la garantie ?",
+      "repondable": true,
+      "passages_attendus": [
+        "P11"
+      ],
+      "passages_trouves": [
+        "P10",
+        "P11",
+        "P14"
+      ],
+      "passage_retrouve": true,
+      "reponse_juste": false,
+      "suffisant": true,
+      "reponse": "Selon nos documents officiels [P10] : La garantie couvre intégralement les pannes matérielles défauts de fabrication de la carte mère dysfonctionnements spontanés de l écran et défaillances de batterie si sa capacité descend sous 80 pourcents au cours de la première année. Réparations avec pièces d origine certifiées."
+    },
+    {
+      "id": "Q08",
+      "question": "Combien coûte l'extension de garantie TechStore Care+ pour PC ?",
+      "repondable": true,
+      "passages_attendus": [
+        "P09"
+      ],
+      "passages_trouves": [
+        "P09",
+        "P12",
+        "P16"
+      ],
+      "passage_retrouve": true,
+      "reponse_juste": true,
+      "suffisant": true,
+      "reponse": "Selon nos documents officiels [P09] : Tous les produits neufs vendus chez TechStore AI bénéficient de la garantie légale de conformité d une durée stricte de 2 ans (24 mois) à compter de la date de livraison. Pour les ordinateurs portables Apple et Dell une extension TechStore Care+ de 1 an supplémentaire (3 ans au total) est disponible en option pour 129 euros."
+    },
+    {
+      "id": "Q09",
+      "question": "À quel niveau d'usure de batterie le remplacement est-il garanti ?",
+      "repondable": true,
+      "passages_attendus": [
+        "P10"
+      ],
+      "passages_trouves": [
+        "P10",
+        "P14",
+        "P11"
+      ],
+      "passage_retrouve": true,
+      "reponse_juste": true,
+      "suffisant": true,
+      "reponse": "Selon nos documents officiels [P10] : La garantie couvre intégralement les pannes matérielles défauts de fabrication de la carte mère dysfonctionnements spontanés de l écran et défaillances de batterie si sa capacité descend sous 80 pourcents au cours de la première année. Réparations avec pièces d origine certifiées."
+    },
+    {
+      "id": "Q10",
+      "question": "En combien de temps le diagnostic initial du SAV est-il réalisé ?",
+      "repondable": true,
+      "passages_attendus": [
+        "P12"
+      ],
+      "passages_trouves": [
+        "P12",
+        "P16",
+        "P13"
+      ],
+      "passage_retrouve": true,
+      "reponse_juste": true,
+      "suffisant": true,
+      "reponse": "Selon nos documents officiels [P12] : Pour activer la garantie le client doit présenter sa facture d achat ou numéro de commande (ex: CMD-1001). Diagnostic technique réalisé sous 48 heures ouvrées en magasin ou par retour atelier. Si non réparable sous 15 jours calendaires échange à neuf ou avoir immédiat."
+    },
+    {
+      "id": "Q11",
+      "question": "Combien d'exemplaires du PC Lenovo Yoga Slim 7 reste-t-il en stock ?",
+      "repondable": true,
+      "passages_attendus": [
+        "P08"
+      ],
+      "passages_trouves": [
+        "P08",
+        "P03",
+        "P04"
+      ],
+      "passage_retrouve": true,
+      "reponse_juste": true,
+      "suffisant": true,
+      "reponse": "Selon nos documents officiels [P08] : Marque : Lenovo. Prix officiel : 949.00 € TTC. Mémoire RAM : 16 Go. Stockage SSD : 1 To. PC portable polyvalent processeur AMD Ryzen 7 7840S écran IPS 14.5 pouces 90 Hz. Disponibilité : 0 unité en stock (épuisé)."
+    },
+    {
+      "id": "Q12",
+      "question": "Quelle est la résolution du capteur photo du Redmi Note 13 Pro ?",
+      "repondable": true,
+      "passages_attendus": [
+        "P04"
+      ],
+      "passages_trouves": [
+        "P04",
+        "P03",
+        "P02"
+      ],
+      "passage_retrouve": true,
+      "reponse_juste": true,
+      "suffisant": true,
+      "reponse": "Selon nos documents officiels [P04] : Marque : Xiaomi. Prix officiel : 299.00 € TTC. Mémoire RAM : 8 Go. Stockage interne : 256 Go. Smartphone milieu de gamme avec capteur photo 200 MP écran AMOLED 120 Hz et charge rapide 67W. Disponibilité : 25 unités en stock."
+    },
+    {
+      "id": "Q13",
+      "question": "Peut-on renvoyer des écouteurs intra-auriculaires déjà descellés ?",
+      "repondable": true,
+      "passages_attendus": [
+        "P14"
+      ],
+      "passages_trouves": [
+        "P14",
+        "P11",
+        "P10"
+      ],
+      "passage_retrouve": true,
+      "reponse_juste": true,
+      "suffisant": true,
+      "reponse": "Selon nos documents officiels [P14] : Le produit doit être à l état neuf complet non endommagé réinitialisé sans compte utilisateur verrouillé dans son emballage d origine intact avec tous les câbles et accessoires. Les écouteurs intra-auriculaires descellés ne peuvent être repris pour raisons d hygiène."
+    },
+    {
+      "id": "Q14",
+      "question": "Quelle puce équipe le MacBook Air 13 pouces ?",
+      "repondable": true,
+      "passages_attendus": [
+        "P05"
+      ],
+      "passages_trouves": [
+        "P05",
+        "P06",
+        "P02"
+      ],
+      "passage_retrouve": true,
+      "reponse_juste": true,
+      "suffisant": true,
+      "reponse": "Selon nos documents officiels [P05] : Marque : Apple. Prix officiel : 1299.00 € TTC. Mémoire RAM : 8 Go. Stockage SSD : 256 Go. Ultraportable 13.6 pouces avec puce M3 design ultra-fin et jusqu à 18 heures d autonomie. Disponibilité : 10 unités en stock."
+    },
+    {
+      "id": "Q15",
+      "question": "Quel est le prix officiel du Pixel 8 Pro de Google ?",
+      "repondable": true,
+      "passages_attendus": [
+        "P03"
+      ],
+      "passages_trouves": [
+        "P03",
+        "P02",
+        "P04"
+      ],
+      "passage_retrouve": true,
+      "reponse_juste": true,
+      "suffisant": true,
+      "reponse": "Selon nos documents officiels [P03] : Marque : Google. Prix officiel : 999.00 € TTC. Mémoire RAM : 12 Go. Stockage interne : 128 Go. Smartphone axé sur la photographie avancée avec puce Google Tensor G3 écran OLED 120 Hz et fonctions IA exclusives. Disponibilité : 5 unités en stock."
+    },
+    {
+      "id": "Q16",
+      "question": "Vendez-vous des machines à café Nespresso dans votre boutique ?",
+      "repondable": false,
+      "passages_attendus": [],
+      "passages_trouves": [
+        "P12",
+        "P16",
+        "P15"
+      ],
+      "passage_retrouve": false,
+      "reponse_juste": true,
+      "suffisant": false,
+      "reponse": "Information insuffisante dans les documents disponibles."
+    },
+    {
+      "id": "Q17",
+      "question": "Proposez-vous la livraison express par drone en 30 minutes ?",
+      "repondable": false,
+      "passages_attendus": [],
+      "passages_trouves": [
+        "P09",
+        "P16",
+        "P12"
+      ],
+      "passage_retrouve": false,
+      "reponse_juste": true,
+      "suffisant": false,
+      "reponse": "Information insuffisante dans les documents disponibles."
+    },
+    {
+      "id": "Q18",
+      "question": "Quelle est la durée de garantie sur les réfrigérateurs Whirlpool ?",
+      "repondable": false,
+      "passages_attendus": [],
+      "passages_trouves": [
+        "P12",
+        "P09",
+        "P16"
+      ],
+      "passage_retrouve": false,
+      "reponse_juste": true,
+      "suffisant": false,
+      "reponse": "Information insuffisante dans les documents disponibles."
+    },
+    {
+      "id": "Q19",
+      "question": "Quel est le tarif de la console de jeux Playstation 5 ?",
+      "repondable": false,
+      "passages_attendus": [],
+      "passages_trouves": [
+        "P05",
+        "P04",
+        "P06"
+      ],
+      "passage_retrouve": false,
+      "reponse_juste": true,
+      "suffisant": false,
+      "reponse": "Information insuffisante dans les documents disponibles."
+    },
+    {
+      "id": "Q20",
+      "question": "Possédez-vous une boutique physique ouverte à Tokyo ?",
+      "repondable": false,
+      "passages_attendus": [],
+      "passages_trouves": [
+        "P09",
+        "P12",
+        "P15"
+      ],
+      "passage_retrouve": false,
+      "reponse_juste": true,
+      "suffisant": false,
+      "reponse": "Information insuffisante dans les documents disponibles."
+    }
+  ]
+}

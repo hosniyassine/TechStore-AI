@@ -1,0 +1,137 @@
+[
+  {
+    "id": "CMD-1001",
+    "product_id": "P001",
+    "product_name": "Galaxy S24 Ultra",
+    "quantity": 1,
+    "total_price": 1349.0,
+    "status": "confirmee",
+    "created_at": "2026-11-20T10:15:00"
+  },
+  {
+    "id": "CMD-1002",
+    "product_id": "P005",
+    "product_name": "MacBook Air M3",
+    "quantity": 2,
+    "total_price": 2598.0,
+    "status": "en_attente",
+    "created_at": "2026-11-21T14:30:00"
+  },
+  {
+    "id": "CMD-1003",
+    "product_id": "P012",
+    "product_name": "Sony WH-1000XM5",
+    "quantity": 1,
+    "total_price": 379.0,
+    "status": "livree",
+    "created_at": "2026-11-19T09:00:00"
+  },
+  {
+    "id": "CMD-1004",
+    "product_id": "P001",
+    "product_name": "Galaxy S24 Ultra",
+    "quantity": 1,
+    "total_price": 1349.0,
+    "status": "confirmee",
+    "created_at": "2026-11-22T18:21:11.686444"
+  },
+  {
+    "id": "CMD-1005",
+    "product_id": "P017",
+    "product_name": "Câble USB-C Tressé 240W 2m",
+    "quantity": 2,
+    "total_price": 39.98,
+    "status": "confirmee",
+    "created_at": "2026-11-22T18:21:11.689054"
+  },
+  {
+    "id": "CMD-1006",
+    "product_id": "P001",
+    "product_name": "Galaxy S24 Ultra",
+    "quantity": 1,
+    "total_price": 1349.0,
+    "status": "confirmee",
+    "created_at": "2026-11-22T18:21:11.701075"
+  },
+  {
+    "id": "CMD-1007",
+    "product_id": "P017",
+    "product_name": "Câble USB-C Tressé 240W 2m",
+    "quantity": 2,
+    "total_price": 39.98,
+    "status": "confirmee",
+    "created_at": "2026-11-22T18:21:11.702938"
+  },
+  {
+    "id": "CMD-1008",
+    "product_id": "P017",
+    "product_name": "Câble USB-C Tressé 240W 2m",
+    "quantity": 1,
+    "total_price": 19.99,
+    "status": "confirmee",
+    "created_at": "2026-11-22T18:32:10.259066"
+  },
+  {
+    "id": "CMD-1009",
+    "product_id": "P001",
+    "product_name": "Galaxy S24 Ultra",
+    "quantity": 1,
+    "total_price": 1349.0,
+    "status": "confirmee",
+    "created_at": "2026-11-22T18:32:10.385530"
+  },
+  {
+    "id": "CMD-1010",
+    "product_id": "P017",
+    "product_name": "Câble USB-C Tressé 240W 2m",
+    "quantity": 1,
+    "total_price": 19.99,
+    "status": "confirmee",
+    "created_at": "2026-11-22T18:32:42.245791"
+  },
+  {
+    "id": "CMD-1011",
+    "product_id": "P001",
+    "product_name": "Galaxy S24 Ultra",
+    "quantity": 1,
+    "total_price": 1349.0,
+    "status": "confirmee",
+    "created_at": "2026-11-22T18:32:42.323069"
+  },
+  {
+    "id": "CMD-1012",
+    "product_id": "P001",
+    "product_name": "Galaxy S24 Ultra",
+    "quantity": 1,
+    "total_price": 1349.0,
+    "status": "confirmee",
+    "created_at": "2026-11-22T18:32:56.070835"
+  },
+  {
+    "id": "CMD-1013",
+    "product_id": "P017",
+    "product_name": "Câble USB-C Tressé 240W 2m",
+    "quantity": 2,
+    "total_price": 39.98,
+    "status": "confirmee",
+    "created_at": "2026-11-22T18:32:56.074453"
+  },
+  {
+    "id": "CMD-1014",
+    "product_id": "P001",
+    "product_name": "Galaxy S24 Ultra",
+    "quantity": 1,
+    "total_price": 1349.0,
+    "status": "confirmee",
+    "created_at": "2026-11-22T18:32:56.091749"
+  },
+  {
+    "id": "CMD-1015",
+    "product_id": "P017",
+    "product_name": "Câble USB-C Tressé 240W 2m",
+    "quantity": 2,
+    "total_price": 39.98,
+    "status": "confirmee",
+    "created_at": "2026-11-22T18:32:56.093927"
+  }
+]
