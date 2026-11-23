@@ -84,10 +84,8 @@ class MockProvider:
         """
         Simulation déterministe d'un appel LLM (compatible structure choices[0].message).
         """
-        dernier_msg = messages[-1]["content"] if messages else ""
-
-        # Détection d'intention dans le dernier message pour simuler un appel d'outil si approprié
-        texte = dernier_msg.lower() if isinstance(dernier_msg, str) else ""
+        user_msgs = [m for m in messages if m.get("role") == "user"]
+        texte = user_msgs[-1]["content"].lower() if user_msgs else (messages[-1]["content"].lower() if messages else "")
 
         class FakeMessage:
             def __init__(self, content="", tool_calls=None):
@@ -143,10 +141,17 @@ class MockProvider:
                 elif "resultats" in res:
                     prods = res["resultats"]
                     if not prods:
-                        reponses_parties.append("Aucun produit ne correspond à ces critères.")
+                        reponses_parties.append("Aucun produit ne correspond à ces critères dans notre magasin. TechStore AI propose uniquement des smartphones, ordinateurs portables, tablettes, casques & écouteurs et accessoires électroniques.")
                     else:
-                        noms = ", ".join(f"{p['name']} ({p['price']} €)" for p in prods[:3])
-                        reponses_parties.append(f"Produits trouvés : {noms}.")
+                        if any(w in texte for w in ["prix", "combien", "coute", "coûte", "tarif"]):
+                            p = prods[0]
+                            reponses_parties.append(f"Le {p['name']} ({p['brand']}) est proposé au prix de {p['price']:.2f} € TTC (RAM : {p.get('ram', 'N/A')}, Stockage : {p.get('storage', 'N/A')}, Stock : {p.get('stock', 0)} unité(s) disponible(s)).")
+                        elif any(w in texte for w in ["étude", "etude", "cours", "étudiant", "recommand", "conseil"]):
+                            noms = ", ".join(f"{p['name']} ({p['price']} €)" for p in prods[:3])
+                            reponses_parties.append(f"Pour les études, nous vous recommandons particulièrement des modèles légers et autonomes comme : {noms}.")
+                        else:
+                            noms = ", ".join(f"{p['name']} ({p['price']} €)" for p in prods[:4])
+                            reponses_parties.append(f"Voici les produits trouvés dans notre catalogue : {noms}.")
                 elif "erreur" in res:
                     reponses_parties.append(f"Erreur : {res['erreur']}")
                 else:
@@ -164,26 +169,38 @@ class MockProvider:
             pids = re.findall(r"p\d{3}", texte)
             pids = [p.upper() for p in pids]
 
-            # Cas A14 / A19 : informations insuffisantes ou aberrantes
-            if "un truc avec un bon écran" in texte:
+            # Cas A14 / A19 / Demande ambiguë : informations insuffisantes
+            if any(w in texte for w in ["un truc avec un bon écran", "un truc bien", "quelque chose de bien", "un bon produit", "conseille-moi un truc", "un appareil bien"]):
                 if est_vague:
                     # Le schéma vague pousse le modèle à appeler un outil à tort
                     return FakeResponse(FakeMessage(tool_calls=[
                         FakeToolCall("call_vague_1", "search_products", {"query": "truc bon écran"})
                     ]))
                 else:
-                    return FakeResponse(FakeMessage(content="Pourriez-vous préciser quel type de produit vous intéresse (smartphone, PC portable, tablette) ou une marque en particulier ?"))
+                    return FakeResponse(FakeMessage(content="Pour vous conseiller au mieux, pourriez-vous préciser quel type d'appareil vous intéresse (smartphone, PC portable, tablette ou casque), votre usage prévu (études, bureautique, création, jeu) et votre budget approximatif ?"))
 
             if "1000 exemplaires" in texte:
                 return FakeResponse(FakeMessage(content="La quantité demandée (1000 unités) dépasse les limites autorisées et nos capacités de stock. Veuillez contacter le service professionnel."))
 
-            # Cas A16 & A17 & A20 : hors sujet, sécurité, salutations
-            if any(w in texte for w in ["meteo", "météo", "carte bancaire", "bonjour que pouvez-vous"]):
-                if any(w in texte for w in ["meteo", "météo"]):
+            # Sécurité, demandes dangereuses, confidentielles ou illégales
+            if any(w in texte for w in ["arme", "bombe", "drogue", "pirater", "hack", "carte bancaire"]):
+                return FakeResponse(FakeMessage(content="Je refuse cette demande : la sécurité et l'éthique sont strictement protégées. En tant qu'assistant TechStore AI, je suis uniquement habilité à vous renseigner sur nos produits électroniques et notre magasin."))
+
+            # Hors sujet & Salutations générales (A16 & A17 & A20 & Q05)
+            if any(w in texte for w in ["meteo", "météo", "temps fait-il", "bonjour que pouvez-vous", "recette", "président", "politique", "capitale"]):
+                if any(w in texte for w in ["meteo", "météo", "temps fait-il"]):
                     return FakeResponse(FakeMessage(content="Je suis l'assistant TechStore AI dédié aux produits électroniques, je ne peux pas donner la météo."))
-                if "carte bancaire" in texte:
-                    return FakeResponse(FakeMessage(content="Je refuse cette demande : la sécurité et la confidentialité des clients sont strictement protégées."))
-                return FakeResponse(FakeMessage(content="Bonjour ! Je suis l'assistant TechStore AI. Je peux vous aider à rechercher un produit, comparer deux modèles, vérifier nos stocks ou préparer votre commande."))
+                if any(w in texte for w in ["recette", "président", "politique", "capitale"]):
+                    return FakeResponse(FakeMessage(content="Je suis l'assistant commercial de TechStore AI. Je ne traite que les demandes concernant notre catalogue de produits électroniques (smartphones, PC, tablettes, casques, accessoires)."))
+                return FakeResponse(FakeMessage(content="Bonjour ! Je suis l'assistant TechStore AI. Je peux vous aider à rechercher un produit, comparer deux modèles, vérifier nos stocks, consulter nos garanties ou préparer votre commande."))
+
+            # Produit non commercialisé (consoles de salon, électroménager...)
+            if any(w in texte for w in ["playstation", "ps5", "console", "xbox", "nintendo", "switch", "aspirateur", "machine à laver"]):
+                return FakeResponse(FakeMessage(content="Nous ne commercialisons pas de consoles de jeux (PlayStation 5, Xbox, Nintendo) ni d'électroménager. TechStore AI est spécialisé dans les smartphones, ordinateurs portables, tablettes, casques & écouteurs et accessoires électroniques. Pour vos loisirs numériques, nous vous recommandons nos PC portables performants (comme le MacBook Air ou Dell XPS) ou nos casques audio immersifs."))
+
+            # Cas SAV & Garantie (avant la recherche générique)
+            if any(w in texte for w in ["garantie", "sav", "panne", "réparation", "reparation", "droit de rétractation"]):
+                return FakeResponse(FakeMessage(content="Tous nos produits neufs, y compris les ordinateurs portables et smartphones, bénéficient de la garantie légale de conformité de 2 ans (24 mois). Pour les PC Apple et Dell, une extension TechStore Care+ de 1 an supplémentaire est disponible pour 129 euros."))
 
             # Comparaison
             if any(w in texte for w in ["compare", "comparer", "différence", "difference", "vs"]):
@@ -192,8 +209,8 @@ class MockProvider:
                     return FakeResponse(FakeMessage(tool_calls=[
                         FakeToolCall("call_s_1", "search_products", {"query": texte[:40]})
                     ]))
-                p1 = pids[0] if len(pids) >= 1 else "P001"
-                p2 = pids[1] if len(pids) >= 2 else ("P002" if p1 != "P002" else "P005")
+                p1 = pids[0] if len(pids) >= 1 else ("P005" if "macbook" in texte else "P001")
+                p2 = pids[1] if len(pids) >= 2 else ("P007" if "dell" in texte else ("P002" if p1 != "P002" else "P005"))
                 return FakeResponse(FakeMessage(tool_calls=[
                     FakeToolCall("call_comp_1", "compare_products", {"product_id_1": p1, "product_id_2": p2})
                 ]))
@@ -206,14 +223,18 @@ class MockProvider:
                         FakeToolCall("call_stock_1", "check_stock", {"product_id": pids[0]}),
                         FakeToolCall("call_stock_2", "check_stock", {"product_id": pids[1]})
                     ]))
-                p1 = pids[0] if len(pids) >= 1 else ("P013" if "airpod" in texte else ("P015" if "anker" in texte else ("P008" if "lenovo" in texte else ("P014" if "bose" in texte else "P001"))))
+                p1 = pids[0] if len(pids) >= 1 else ("P013" if "airpod" in texte else ("P015" if ("anker" in texte or "chargeur" in texte) else ("P008" if "lenovo" in texte else ("P014" if "bose" in texte else ("P001" if "s24" in texte else "P001")))))
                 return FakeResponse(FakeMessage(tool_calls=[
                     FakeToolCall("call_stock_1", "check_stock", {"product_id": p1})
                 ]))
 
             # Commande
             if any(w in texte for w in ["commander", "acheter", "achat", "valide", "confirme"]):
-                p1 = pids[0] if len(pids) >= 1 else ("P017" if "câble" in texte or "cable" in texte else "P001")
+                p1 = pids[0] if len(pids) >= 1 else (
+                    "P001" if ("s24" in texte or "galaxy" in texte) else
+                    ("P015" if ("anker" in texte or "chargeur" in texte) else
+                     ("P017" if "câble" in texte or "cable" in texte else "P001"))
+                )
                 # Détection quantité
                 q = 1
                 if "2 " in texte or "deux" in texte:
@@ -230,17 +251,36 @@ class MockProvider:
                     FakeToolCall("call_stock_1", "check_stock", {"product_id": "P013"})
                 ]))
 
-            # Recherche générale
-            if any(w in texte for w in ["cherche", "recherche", "trouve", "smartphone", "ordinateur", "laptop", "casque", "audio"]):
+            # Recherche générale, prix, catalogue, modèles ou marques
+            if any(w in texte for w in [
+                "cherche", "recherche", "trouve", "smartphone", "ordinateur", "laptop", "casque", "audio",
+                "tablette", "prix", "combien", "coute", "coûte", "tarif", "s24", "galaxy", "macbook",
+                "dell", "lenovo", "ipad", "sony", "recommand", "conseil", "étude", "etude", "cours"
+            ]):
                 cat = None
-                if "smartphone" in texte:
+                if any(w in texte for w in ["smartphone", "s24", "galaxy"]):
                     cat = "Smartphones"
-                elif "ordinateur" in texte or "laptop" in texte:
+                elif any(w in texte for w in ["ordinateur", "laptop", "macbook", "dell", "lenovo"]):
                     cat = "Ordinateurs portables"
-                elif "casque" in texte:
+                elif any(w in texte for w in ["casque", "audio", "sony", "bose"]):
                     cat = "Casques et écouteurs"
+                elif any(w in texte for w in ["tablette", "ipad"]):
+                    cat = "Tablettes"
+
+                q_term = texte[:50]
+                if "s24" in texte or "galaxy" in texte:
+                    q_term = "Galaxy S24 Ultra"
+                elif "macbook" in texte:
+                    q_term = "MacBook Air"
+                elif "dell" in texte:
+                    q_term = "Dell XPS"
+                elif "anker" in texte or "chargeur" in texte:
+                    q_term = "Anker Prime"
+                elif cat is not None and not any(m in texte for m in ["s24", "galaxy", "iphone", "pixel", "xiaomi", "macbook", "dell", "lenovo", "thinkpad", "sony", "bose", "ipad"]):
+                    q_term = ""
+
                 return FakeResponse(FakeMessage(tool_calls=[
-                    FakeToolCall("call_search_1", "search_products", {"query": texte[:50], "category": cat})
+                    FakeToolCall("call_search_1", "search_products", {"query": q_term, "category": cat})
                 ]))
 
         # Si pas d'outil requis (salutation ou hors sujet)

@@ -399,22 +399,65 @@ function initAssistant() {
     });
 }
 
+function formaterMessageMarkdown(texte) {
+    if (!texte) return "";
+    let html = escapeHtml(texte);
+    // Gras **texte**
+    html = html.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+    // Code inline `code`
+    html = html.replace(/`([^`]+)`/g, "<code>$1</code>");
+    // Puces Markdown (- item ou * item)
+    html = html.replace(/(?:^|\n)[-*]\s+(.+)/g, "<br>• $1");
+    // Sauts de ligne
+    html = html.replace(/\n/g, "<br>");
+    return html;
+}
+
 function ajouterMessage(texte, emetteur = "user") {
     const container = document.getElementById("chat-messages");
     const div = document.createElement("div");
     div.className = `message message-${emetteur}`;
-    div.innerHTML = `<div class="message-bubble">${escapeHtml(texte).replace(/\n/g, "<br>")}</div>`;
+    div.innerHTML = `<div class="message-bubble">${formaterMessageMarkdown(texte)}</div>`;
     container.appendChild(div);
     container.scrollTop = container.scrollHeight;
 }
 
+function afficherIndicateurChargement() {
+    masquerIndicateurChargement();
+    const container = document.getElementById("chat-messages");
+    const div = document.createElement("div");
+    div.id = "chat-loading-indicator";
+    div.className = "message message-bot";
+    div.innerHTML = `
+        <div class="loading-bubble">
+            <span class="typing-dot"></span>
+            <span class="typing-dot"></span>
+            <span class="typing-dot"></span>
+            <span class="loading-label">L'assistant réfléchit...</span>
+        </div>
+    `;
+    container.appendChild(div);
+    container.scrollTop = container.scrollHeight;
+}
+
+function masquerIndicateurChargement() {
+    const ind = document.getElementById("chat-loading-indicator");
+    if (ind) ind.remove();
+}
+
 async function envoyerMessage() {
     const textarea = document.getElementById("chat-textarea");
+    const sendBtn = document.getElementById("btn-send-message");
     const texte = textarea.value.trim();
     if (!texte) return;
 
     textarea.value = "";
     ajouterMessage(texte, "user");
+
+    // Désactiver contrôles pendant la requête
+    sendBtn.disabled = true;
+    textarea.disabled = true;
+    afficherIndicateurChargement();
 
     const mode = document.getElementById("select-ai-mode").value;
 
@@ -425,30 +468,58 @@ async function envoyerMessage() {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ message: texte })
             });
-            const data = await res.json();
-            ajouterMessage(data.reponse, "bot");
-            afficherOutilsExecutes(data.appels);
+            masquerIndicateurChargement();
+            if (res.ok) {
+                const data = await res.json();
+                ajouterMessage(data.reponse, "bot");
+                afficherOutilsExecutes(data.appels);
+            } else {
+                const err = await res.json().catch(() => ({ detail: "Erreur serveur" }));
+                ajouterMessage(`❌ Erreur (${res.status}) : ${err.detail || "Échec de traitement agent"}`, "bot");
+            }
         } else if (mode === "rag") {
             const res = await fetch("/api/rag/query", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ question: texte, k: 3 })
             });
-            const data = await res.json();
-            ajouterMessage(data.reponse, "bot");
-            afficherSourcesRag(data.passages, data.sources);
+            masquerIndicateurChargement();
+            if (res.ok) {
+                const data = await res.json();
+                ajouterMessage(data.reponse, "bot");
+                afficherSourcesRag(data.passages, data.sources);
+            } else {
+                const err = await res.json().catch(() => ({ detail: "Erreur serveur" }));
+                ajouterMessage(`❌ Erreur (${res.status}) : ${err.detail || "Échec de recherche RAG"}`, "bot");
+            }
         } else {
             const res = await fetch("/api/classify", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ text: texte })
             });
-            const data = await res.json();
-            const rep = `Catégorie identifiée : [${data.category.toUpperCase()}] (Confiance : ${(data.confidence * 100).toFixed(1)}%, Revue requise : ${data.requires_review ? 'OUI' : 'NON'})`;
-            ajouterMessage(rep, "bot");
+            masquerIndicateurChargement();
+            if (res.ok) {
+                const data = await res.json();
+                const revueTxt = data.requires_review ? "⚠️ OUI (confiance inférieure au seuil 0.60)" : "✅ NON (confiance suffisante)";
+                const rep = `🔍 **Résultat de la classification (TP2)** :
+- **Intention détectée** : \`${data.category.toUpperCase()}\`
+- **Score de confiance** : **${(data.confidence * 100).toFixed(1)}%**
+- **Revue humaine requise** : ${revueTxt}`;
+                ajouterMessage(rep, "bot");
+            } else {
+                const err = await res.json().catch(() => ({ detail: "Erreur serveur" }));
+                ajouterMessage(`❌ Erreur (${res.status}) : ${err.detail || "Échec classification"}`, "bot");
+            }
         }
     } catch (e) {
-        ajouterMessage("Erreur lors de la communication avec le serveur.", "bot");
+        masquerIndicateurChargement();
+        ajouterMessage("❌ Impossible de contacter le serveur TechStore AI. Vérifiez que l'API FastAPI est bien lancée sur http://127.0.0.1:8000.", "bot");
+    } finally {
+        masquerIndicateurChargement();
+        sendBtn.disabled = false;
+        textarea.disabled = false;
+        textarea.focus();
     }
 }
 

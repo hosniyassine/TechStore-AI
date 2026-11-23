@@ -3,7 +3,7 @@
   "dimension": 384,
   "nb_passages": 16,
   "nb_questions_test": 15,
-  "duree_secondes": 0.18,
+  "duree_secondes": 0.31,
   "recall@1": 0.8,
   "recall@3": 0.9333,
   "recall@5": 1.0,

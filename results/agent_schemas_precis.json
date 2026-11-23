@@ -58,7 +58,7 @@
       "reponse_juste": true,
       "tache_reussie": true,
       "tours": 2,
-      "reponse": "Produits trouvés : Galaxy S24 Ultra (1349.0 €)."
+      "reponse": "Voici les produits trouvés dans notre catalogue : Galaxy S24 Ultra (1349.0 €), iPhone 15 Pro (1229.0 €), Pixel 8 Pro (999.0 €), Redmi Note 13 Pro (299.0 €)."
     },
     {
       "id": "A02",
@@ -73,7 +73,7 @@
       "reponse_juste": true,
       "tache_reussie": true,
       "tours": 2,
-      "reponse": "Produits trouvés : MacBook Air M3 (1299.0 €), MacBook Pro 14 M3 Pro (2499.0 €), Dell XPS 15 9530 (1899.0 €)."
+      "reponse": "Voici les produits trouvés dans notre catalogue : MacBook Air M3 (1299.0 €), MacBook Pro 14 M3 Pro (2499.0 €), Dell XPS 15 9530 (1899.0 €), Lenovo Yoga Slim 7 (949.0 €)."
     },
     {
       "id": "A03",
@@ -88,7 +88,7 @@
       "reponse_juste": true,
       "tache_reussie": true,
       "tours": 2,
-      "reponse": "Produits trouvés : Sony WH-1000XM5 (379.0 €), AirPods Pro 2 USB-C (279.0 €), Bose QuietComfort Ultra (449.0 €)."
+      "reponse": "Voici les produits trouvés dans notre catalogue : Sony WH-1000XM5 (379.0 €), AirPods Pro 2 USB-C (279.0 €), Bose QuietComfort Ultra (449.0 €)."
     },
     {
       "id": "A04",
@@ -223,7 +223,7 @@
       "reponse_juste": true,
       "tache_reussie": true,
       "tours": 2,
-      "reponse": "Commande CMD-1012 validée avec succès ! Montant : 1349.0 €."
+      "reponse": "Commande CMD-1008 validée avec succès ! Montant : 1349.0 €."
     },
     {
       "id": "A13",
@@ -238,7 +238,7 @@
       "reponse_juste": true,
       "tache_reussie": true,
       "tours": 2,
-      "reponse": "Commande CMD-1013 validée avec succès ! Montant : 39.98 €."
+      "reponse": "Commande CMD-1009 validée avec succès ! Montant : 39.98 €."
     },
     {
       "id": "A14",
@@ -249,7 +249,7 @@
       "reponse_juste": true,
       "tache_reussie": true,
       "tours": 1,
-      "reponse": "Pourriez-vous préciser quel type de produit vous intéresse (smartphone, PC portable, tablette) ou une marque en particulier ?"
+      "reponse": "Pour vous conseiller au mieux, pourriez-vous préciser quel type d'appareil vous intéresse (smartphone, PC portable, tablette ou casque), votre usage prévu (études, bureautique, création, jeu) et votre budget approximatif ?"
     },
     {
       "id": "A15",
@@ -304,7 +304,7 @@
       "reponse_juste": true,
       "tache_reussie": false,
       "tours": 2,
-      "reponse": "Le produit Galaxy S24 Ultra (P001) est disponible en stock avec 11 unité(s)."
+      "reponse": "Le produit Galaxy S24 Ultra (P001) est disponible en stock avec 17 unité(s)."
     },
     {
       "id": "A19",
@@ -326,7 +326,7 @@
       "reponse_juste": true,
       "tache_reussie": true,
       "tours": 1,
-      "reponse": "Bonjour ! Je suis l'assistant TechStore AI. Je peux vous aider à rechercher un produit, comparer deux modèles, vérifier nos stocks ou préparer votre commande."
+      "reponse": "Bonjour ! Je suis l'assistant TechStore AI. Je peux vous aider à rechercher un produit, comparer deux modèles, vérifier nos stocks, consulter nos garanties ou préparer votre commande."
     }
   ]
 }

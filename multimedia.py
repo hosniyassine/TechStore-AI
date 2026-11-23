@@ -130,14 +130,16 @@ def transcrire_audio(chemin: str, modele: str = MODEL_AUDIO, langue: str = "fr")
 
     # Mode MOCK / simulation déterministe basée sur le nom du fichier ou métadonnées
     nom = Path(chemin).stem.lower()
-    if "s24" in nom or "smartphone" in nom:
+    if "s24" in nom or "smartphone" in nom or "q01" in nom:
         return "Bonjour, quel est le prix du Galaxy S24 Ultra et est-il disponible en stock ?"
-    elif "macbook" in nom or "laptop" in nom:
+    elif "macbook" in nom or "laptop" in nom or "comparatif" in nom or "comparaison" in nom or "q02" in nom:
         return "Je voudrais comparer le MacBook Air M3 et le Dell XPS 15 s'il vous plaît."
-    elif "garantie" in nom:
+    elif "garantie" in nom or "q03" in nom:
         return "Combien de temps dure la garantie légale sur vos ordinateurs portables ?"
-    elif "commande" in nom:
+    elif "commande" in nom or "q04" in nom:
         return "Je confirme ma commande pour un exemplaire du chargeur Anker 67W."
+    elif "hors_sujet" in nom or "meteo" in nom or "q05" in nom:
+        return "Quel temps fait-il demain après-midi à Paris ?"
     elif "retour" in nom:
         return "Quelles sont les conditions pour renvoyer un casque audio déballé ?"
     else:
@@ -241,33 +243,38 @@ def analyser_image_produit(chemin_image: str) -> Dict[str, Any]:
             categorie_detectee = parsed.get("categorie", "Smartphones")
             description_visuelle = parsed.get("description", description_visuelle)
             mots_cles = parsed.get("mots_cles", mots_cles)
+            vision_reussie = True
         except Exception as exc:
             print(f"Échec vision réelle, repli simulé : {exc}")
-
-    # Simulation déterministe hors ligne basée sur le chemin / dossier
-    nom_parent = p.parent.name.lower()
-    nom_fich = p.name.lower()
-
-    if "laptop" in nom_parent or "laptop" in nom_fich or "ordinateur" in nom_fich:
-        categorie_detectee = "Ordinateurs portables"
-        description_visuelle = "Ordinateur portable fin avec clavier rétroéclairé et trackpad spacieux."
-        mots_cles = "macbook dell xps lenovo"
-    elif "tablet" in nom_parent or "tablette" in nom_fich or "ipad" in nom_fich:
-        categorie_detectee = "Tablettes"
-        description_visuelle = "Tablette tactile grand écran adaptée au dessin et multimédia."
-        mots_cles = "ipad galaxy tab xiaomi pad"
-    elif "casque" in nom_fich or "ecouteur" in nom_fich or "sony" in nom_fich or "audio" in nom_parent:
-        categorie_detectee = "Casques et écouteurs"
-        description_visuelle = "Casque audio circum-aural sans fil avec coussinets confortables."
-        mots_cles = "sony wh bose airpods"
-    elif "accessoire" in nom_parent or "chargeur" in nom_fich or "cable" in nom_fich:
-        categorie_detectee = "Accessoires électroniques"
-        description_visuelle = "Accessoire de connectivité ou charge rapide USB-C."
-        mots_cles = "anker chargeur usb-c"
+            vision_reussie = False
     else:
-        categorie_detectee = "Smartphones"
-        description_visuelle = "Smartphone haute résolution avec multiple capteurs photos."
-        mots_cles = "galaxy s24 iphone pixel redmi"
+        vision_reussie = False
+
+    # Simulation déterministe hors ligne basée sur le chemin / dossier si la vision réelle n'a pas abouti
+    if not vision_reussie:
+        nom_parent = p.parent.name.lower()
+        nom_fich = p.name.lower()
+
+        if "laptop" in nom_parent or "laptop" in nom_fich or "ordinateur" in nom_fich or "macbook" in nom_fich:
+            categorie_detectee = "Ordinateurs portables"
+            description_visuelle = "Ordinateur portable fin avec clavier rétroéclairé et trackpad spacieux."
+            mots_cles = "macbook dell xps lenovo"
+        elif "tablet" in nom_parent or "tablette" in nom_fich or "ipad" in nom_fich:
+            categorie_detectee = "Tablettes"
+            description_visuelle = "Tablette tactile grand écran adaptée au dessin et multimédia."
+            mots_cles = "ipad galaxy tab xiaomi pad"
+        elif "casque" in nom_fich or "ecouteur" in nom_fich or "sony" in nom_fich or "audio" in nom_parent:
+            categorie_detectee = "Casques et écouteurs"
+            description_visuelle = "Casque audio circum-aural sans fil avec coussinets confortables."
+            mots_cles = "sony wh bose airpods"
+        elif "accessoire" in nom_parent or "chargeur" in nom_fich or "cable" in nom_fich:
+            categorie_detectee = "Accessoires électroniques"
+            description_visuelle = "Accessoire de connectivité ou charge rapide USB-C."
+            mots_cles = "anker chargeur usb-c"
+        else:
+            categorie_detectee = "Smartphones"
+            description_visuelle = "Smartphone haute résolution avec multiple capteurs photos."
+            mots_cles = "galaxy s24 iphone pixel redmi"
 
     # 4. Recherche des produits correspondants dans le catalogue TechStore
     produits_associes = crud.get_all_products(category=categorie_detectee)

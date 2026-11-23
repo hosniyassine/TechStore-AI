@@ -144,5 +144,5 @@
   },
   "latence_min_ms": 0.0,
   "latence_mediane_ms": 0.01,
-  "latence_max_ms": 0.06
+  "latence_max_ms": 0.08
 }

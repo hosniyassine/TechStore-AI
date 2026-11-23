@@ -8,7 +8,7 @@
     "description": "Smartphone haut de gamme avec écran Dynamic AMOLED 2X 6.8 pouces, processeur Snapdragon 8 Gen 3 et stylet S-Pen inclus.",
     "ram": "12 Go",
     "storage": "256 Go",
-    "stock": 10
+    "stock": 16
   },
   {
     "id": "P002",
@@ -184,6 +184,17 @@
     "description": "Câble de recharge rapide Power Delivery 3.1 ultra-résistant supportant jusqu'à 240W.",
     "ram": "N/A",
     "storage": "N/A",
-    "stock": 50
+    "stock": 44
+  },
+  {
+    "id": "P018",
+    "name": "Samsung S22",
+    "brand": "Samsung",
+    "category": "Smartphones",
+    "price": 400.0,
+    "description": "Smartphone",
+    "ram": "12",
+    "storage": "265",
+    "stock": 5
   }
 ]

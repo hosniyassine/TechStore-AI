@@ -50,10 +50,22 @@ def get_all_products(
 
     if search:
         s_lower = search.lower().strip()
-        mots_ignores = {"cherche", "recherche", "trouve", "trouver", "avec", "pour", "dans", "plus", "euros", "euro", "smartphone", "ordinateur", "laptop", "casque", "tablette", "appareil"}
-        mots_cles = [m for m in s_lower.split() if len(m) > 2 and m not in mots_ignores]
+        mots_ignores = {
+            "cherche", "recherche", "trouve", "trouver", "avec", "pour", "dans", "plus",
+            "euros", "euro", "smartphone", "smartphones", "ordinateur", "ordinateurs",
+            "laptop", "laptops", "casque", "casques", "tablette", "tablettes", "appareil",
+            "appareils", "quel", "quels", "quelle", "quelles", "avez", "vous", "avez-vous",
+            "liste", "tous", "vos", "montre", "montrez", "disponible", "disponibles", "prix",
+            "combien", "coute", "coûte", "cout", "tarif", "proposez", "vendez", "magasin",
+            "boutique", "rayon", "catalogue", "notre", "votre", "proposez-vous", "avez-vous"
+        }
+        import re
+        mots_cles = [re.sub(r"[^\w]", "", m) for m in s_lower.split() if len(re.sub(r"[^\w]", "", m)) > 2 and re.sub(r"[^\w]", "", m) not in mots_ignores]
 
         def match_produit(p):
+            # Si une catégorie est déjà filtrée et qu'il n'y a pas d'autres mots-clés spécifiques (ex: "Quels smartphones avez-vous ?")
+            if category and not mots_cles:
+                return True
             texte_p = f"{p.get('name', '')} {p.get('brand', '')} {p.get('description', '')}".lower()
             if s_lower in texte_p:
                 return True
